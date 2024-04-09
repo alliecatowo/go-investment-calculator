@@ -28,7 +28,7 @@ func main() {
 	case 1:
 		profit_calculator.CalculateProfit()
 	case 2:
-		investment_calculator.CalculateInvestment()
+		investment_calculator.InvestmentPrompt()
 	default:
 		fmt.Println("Invalid option. Please try again.")
 		os.Exit(1)
