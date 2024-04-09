@@ -2,10 +2,15 @@ package bank
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/alliecatowo/go-investment-calculator/user_input"
 )
 
+func writeBalance(balance float64) {
+	balanceBytes := []byte(fmt.Sprintf("%.2f", balance))
+	os.WriteFile("balance.txt", balanceBytes, 0644)
+}
 func Prompt() {
 	fmt.Println("Welcome to the GO Bank!")
 	var accountBalance float64 = 1000
@@ -29,6 +34,7 @@ loop: //label the loop to allow break to exit from switch statement
 				continue
 			}
 			accountBalance += deposit
+			writeBalance(accountBalance)
 			fmt.Printf("Your new balance is %.2f\n", accountBalance)
 		case 3:
 			withdraw := user_input.GetInput("Enter the amount you want to withdraw: ")
@@ -41,6 +47,7 @@ loop: //label the loop to allow break to exit from switch statement
 				continue
 			}
 			accountBalance -= withdraw
+			writeBalance(accountBalance)
 			fmt.Printf("Your new balance is %.2f\n", accountBalance)
 		case 4:
 			break loop
