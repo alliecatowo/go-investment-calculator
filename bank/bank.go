@@ -1,19 +1,50 @@
 package bank
 
 import (
+	"errors"
 	"fmt"
 	"os"
+	"strconv"
 
 	"github.com/alliecatowo/go-investment-calculator/user_input"
 )
 
+const accountFileName = "balance.txt"
+
+func getBalance() (float64, error) {
+	data, err := os.ReadFile(accountFileName)
+
+	if err != nil {
+		writeBalance(100.0)
+		return 100.0, errors.New("Account balance file not found. Default balance of $100.00 set.")
+	}
+
+	balanceText := string(data)
+	balance, err := strconv.ParseFloat(balanceText, 64)
+
+	if err != nil {
+		writeBalance(100.0)
+		return 100.0, errors.New("Failed to parse account balance. Default balance of $100.00 set.")
+	}
+	return balance, nil
+}
+
 func writeBalance(balance float64) {
 	balanceBytes := []byte(fmt.Sprintf("%.2f", balance))
-	os.WriteFile("balance.txt", balanceBytes, 0644)
+	os.WriteFile(accountFileName, balanceBytes, 0644)
 }
+
 func Prompt() {
+	var accountBalance, err = getBalance()
+
+	if err != nil {
+		fmt.Println("Error!")
+		fmt.Println(err)
+		fmt.Println("\n-------------")
+	}
+
 	fmt.Println("Welcome to the GO Bank!")
-	var accountBalance float64 = 1000
+
 loop: //label the loop to allow break to exit from switch statement
 	for {
 		fmt.Println("What do you want to do?")
