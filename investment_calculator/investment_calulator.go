@@ -1,11 +1,11 @@
-package main
+package investment_calculator
 
 import (
 	"fmt"
 	"math"
 )
 
-func main() {
+func CalculateInvestment() {
 	// I was suggested to use 2.0% - as if!
 	const inflationRate = 3.2
 	var investmentAmount, years, expectedReturnRate float64
