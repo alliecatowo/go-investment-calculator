@@ -7,6 +7,7 @@ import (
 )
 
 func Prompt() {
+	var accountBalance float64 = 1000
 	fmt.Println("Welcome to the GO Bank!")
 	fmt.Println("What do you want to do?")
 	fmt.Println("1. Check Balance")
@@ -15,17 +16,21 @@ func Prompt() {
 	fmt.Println("4. Exit")
 
 	opt := int(user_input.GetInput("Your choice: "))
+	fmt.Println("You chose option", opt)
 
 	switch opt {
 	case 1:
-		fmt.Println("Your balance is $1000")
+		fmt.Printf("Your balance is %.2f\n", accountBalance)
 	case 2:
-		fmt.Println("You deposited $100")
+		deposit := user_input.GetInput("Enter the amount you want to deposit: ")
+		accountBalance += deposit
+		fmt.Printf("Your new balance is %.2f\n", accountBalance)
 	case 3:
-		fmt.Println("You withdrew $100")
+		withdraw := user_input.GetInput("Enter the amount you want to withdraw: ")
+		accountBalance -= withdraw
+		fmt.Printf("Your new balance is %.2f\n", accountBalance)
 	case 4:
 		fmt.Println("Goodbye!")
 	}
 
-	fmt.Println("You chose option", opt)
 }
