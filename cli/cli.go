@@ -16,7 +16,13 @@ func main() {
 	fmt.Println("2. Investment Calculator")
 
 	var option int
-	fmt.Scan(&option)
+	// catch invalid input
+	_, err := fmt.Scanln(&option)
+	// nil, because google had to be quirky!
+	if err != nil {
+		fmt.Println("Invalid input. Please try again.")
+		os.Exit(1)
+	}
 
 	switch option {
 	case 1:
