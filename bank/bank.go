@@ -14,7 +14,18 @@ func Prompt() {
 	fmt.Println("3. Withdraw money")
 	fmt.Println("4. Exit")
 
-	option := user_input.GetInput("Your choice: ")
+	opt := int(user_input.GetInput("Your choice: "))
 
-	fmt.Println("You chose option", option)
+	switch opt {
+	case 1:
+		fmt.Println("Your balance is $1000")
+	case 2:
+		fmt.Println("You deposited $100")
+	case 3:
+		fmt.Println("You withdrew $100")
+	case 4:
+		fmt.Println("Goodbye!")
+	}
+
+	fmt.Println("You chose option", opt)
 }
