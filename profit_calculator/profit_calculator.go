@@ -1,17 +1,15 @@
 package profit_calculator
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/alliecatowo/go-investment-calculator/user_input"
+)
 
 func Prompt() {
-	var revenue, expenses, tax_rate float64
-	fmt.Println("Enter Your Revenue:")
-	fmt.Scan(&revenue)
-
-	fmt.Println("Enter Your Expenses:")
-	fmt.Scan(&expenses)
-
-	fmt.Println("Enter Your Tax Rate:")
-	fmt.Scan(&tax_rate)
+	revenue := user_input.GetInput("Enter Your Revenue:")
+	expenses := user_input.GetInput("Enter Your Expenses:")
+	tax_rate := user_input.GetInput("Enter Your Tax Rate:")
 
 	ebt, profit, ratio := calculate_profits(revenue, expenses, tax_rate)
 
