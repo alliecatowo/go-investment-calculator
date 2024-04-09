@@ -1,6 +1,10 @@
 package bank
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/alliecatowo/go-investment-calculator/user_input"
+)
 
 func Prompt() {
 	fmt.Println("Welcome to the GO Bank!")
@@ -10,9 +14,7 @@ func Prompt() {
 	fmt.Println("3. Withdraw money")
 	fmt.Println("4. Exit")
 
-	var option int
-	fmt.Print("Your choice: ")
-	fmt.Scan(&option)
+	option := user_input.GetInput("Your choice: ")
 
 	fmt.Println("You chose option", option)
 }
