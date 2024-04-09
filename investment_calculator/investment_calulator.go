@@ -1,15 +1,14 @@
-package main
+package investment_calculator
 
 import (
 	"fmt"
 	"math"
 )
 
-func main() {
+func CalculateInvestment() {
 	// I was suggested to use 2.0% - as if!
 	const inflationRate = 3.2
-	var investmentAmount float64
-	years, expectedReturnRate := 10.0, 5.5
+	var investmentAmount, years, expectedReturnRate float64
 
 	fmt.Println("Enter the amount you want to invest: ")
 	// Store the results of fmt.Scan into the value at the adress of investmentAmount
