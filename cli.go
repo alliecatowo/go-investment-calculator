@@ -2,35 +2,38 @@ package main
 
 import (
 	"fmt"
-	"os"
 
+	"github.com/alliecatowo/go-investment-calculator/bank"
 	"github.com/alliecatowo/go-investment-calculator/investment_calculator"
 	"github.com/alliecatowo/go-investment-calculator/profit_calculator"
+	"github.com/alliecatowo/go-investment-calculator/user_input"
 )
 
 func main() {
-	fmt.Println("Welcome to the Investment Calculator!")
+	fmt.Println("Welcome to the GO Finance CLI!")
 
-	fmt.Println("Please select an option:")
-	fmt.Println("1. Profit Calculator")
-	fmt.Println("2. Investment Calculator")
+	for {
+		fmt.Println("Please select an option:")
+		fmt.Println("1. Bank")
+		fmt.Println("2. Profit Calculator")
+		fmt.Println("3. Investment Calculator")
+		fmt.Println("4. Exit")
 
-	var option int
-	// catch invalid input
-	_, err := fmt.Scanln(&option)
-	// nil, because google had to be quirky!
-	if err != nil {
-		fmt.Println("Invalid input. Please try again.")
-		os.Exit(1)
-	}
+		option := user_input.GetInput("Your choice: ")
 
-	switch option {
-	case 1:
-		profit_calculator.Prompt()
-	case 2:
-		investment_calculator.Prompt()
-	default:
-		fmt.Println("Invalid option. Please try again.")
-		os.Exit(1)
+		switch option {
+		case 1:
+			bank.Prompt()
+		case 2:
+			profit_calculator.Prompt()
+		case 3:
+			investment_calculator.Prompt()
+		case 4:
+			fmt.Println("Goodbye! Please come again :)")
+			return
+		default:
+			fmt.Println("Invalid option. Please try again.")
+			continue
+		}
 	}
 }
