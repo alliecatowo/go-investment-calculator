@@ -16,7 +16,7 @@ func getBalance() (float64, error) {
 
 	if err != nil {
 		writeBalance(100.0)
-		return 100.0, errors.New("Account balance file not found. Default balance of $100.00 set.")
+		return 100.0, errors.New("account balance file not found. Default balance of $100.00 set")
 	}
 
 	balanceText := string(data)
@@ -24,14 +24,18 @@ func getBalance() (float64, error) {
 
 	if err != nil {
 		writeBalance(100.0)
-		return 100.0, errors.New("Failed to parse account balance. Default balance of $100.00 set.")
+		return 100.0, errors.New("failed to parse account balance. Default balance of $100.00 set")
 	}
 	return balance, nil
 }
 
 func writeBalance(balance float64) {
 	balanceBytes := []byte(fmt.Sprintf("%.2f", balance))
-	os.WriteFile(accountFileName, balanceBytes, 0644)
+	err := os.WriteFile(accountFileName, balanceBytes, 0644)
+	if err != nil {
+		// panic causes a hard exit as opposed to graceful error handling
+		panic("Can't write balance to file! Aborting application!")
+	}
 }
 
 func Prompt() {
