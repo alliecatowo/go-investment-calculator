@@ -26,9 +26,9 @@ func main() {
 
 	switch option {
 	case 1:
-		profit_calculator.CalculateProfit()
+		profit_calculator.Prompt()
 	case 2:
-		investment_calculator.InvestmentPrompt()
+		investment_calculator.Prompt()
 	default:
 		fmt.Println("Invalid option. Please try again.")
 		os.Exit(1)

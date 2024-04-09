@@ -5,7 +5,7 @@ import (
 	"math"
 )
 
-func InvestmentPrompt() {
+func Prompt() {
 	// I was suggested to use 2.0% - as if!
 	const inflationRate = 2.0
 	var investmentAmount, years, expectedReturnRate float64
