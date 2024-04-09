@@ -17,8 +17,8 @@ func CalculateProfit() {
 	profit := ebt * (1 - tax_rate/100)
 	ratio := profit / revenue * 100
 
-	fmt.Println("Your Earnings Before Tax (Gross Profit) is: $", ebt)
-	fmt.Println("Your Earnings After Tax (Net Profit) is: $", profit)
-	fmt.Println("Your Net Profit as a percentage of Revenue is: ", ratio, "%")
+	fmt.Printf("Your Earnings Before Tax (Gross Profit) is: $%.2f\n", ebt)
+	fmt.Printf("Your Earnings After Tax (Net Profit) is: $%.2f\n", profit)
+	fmt.Printf("Your Net Profit as a percentage of Revenue is: %.2f%%\n", ratio)
 
 }
