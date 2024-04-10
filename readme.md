@@ -14,7 +14,13 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. Clone the repository `git clone https://github.com/alliecatowo/go-investment-calculator`
 2. Navigate into the cloned repository `cd investment-calculator`
-3. Run the application `go run .`
+3. Run the application `go run ./app`
+
+### Build
+
+1. Navigate to the application directory `cd ./app`
+2. Build the application `go build`
+3. Run the application `./app`
 
 ## Usage
 
