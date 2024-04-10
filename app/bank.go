@@ -1,12 +1,10 @@
-package bank
+package main
 
 import (
 	"errors"
 	"fmt"
 	"os"
 	"strconv"
-
-	"github.com/alliecatowo/go-investment-calculator/user_input"
 )
 
 const accountFileName = "balance.txt"
@@ -38,7 +36,7 @@ func writeBalance(balance float64) {
 	}
 }
 
-func Prompt() {
+func Bank() {
 	var accountBalance, err = getBalance()
 
 	if err != nil {
@@ -57,13 +55,13 @@ loop: //label the loop to allow break to exit from switch statement
 		fmt.Println("3. Withdraw money")
 		fmt.Println("4. Exit")
 
-		opt := int(user_input.GetInput("Your choice: "))
+		opt := int(GetInput("Your choice: "))
 
 		switch opt {
 		case 1:
 			fmt.Printf("Your balance is %.2f\n", accountBalance)
 		case 2:
-			deposit := user_input.GetInput("Enter the amount you want to deposit: ")
+			deposit := GetInput("Enter the amount you want to deposit: ")
 			if deposit <= 0 {
 				fmt.Println("Invalid amount. Must be greater than 0. Please try again.")
 				continue
@@ -72,7 +70,7 @@ loop: //label the loop to allow break to exit from switch statement
 			writeBalance(accountBalance)
 			fmt.Printf("Your new balance is %.2f\n", accountBalance)
 		case 3:
-			withdraw := user_input.GetInput("Enter the amount you want to withdraw: ")
+			withdraw := GetInput("Enter the amount you want to withdraw: ")
 			if accountBalance < withdraw {
 				fmt.Println("Insufficient funds.")
 				continue

@@ -1,4 +1,4 @@
-package user_input
+package main
 
 import "fmt"
 

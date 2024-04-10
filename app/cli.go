@@ -2,11 +2,6 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/alliecatowo/go-investment-calculator/bank"
-	"github.com/alliecatowo/go-investment-calculator/investment_calculator"
-	"github.com/alliecatowo/go-investment-calculator/profit_calculator"
-	"github.com/alliecatowo/go-investment-calculator/user_input"
 )
 
 func main() {
@@ -19,15 +14,15 @@ func main() {
 		fmt.Println("3. Investment Calculator")
 		fmt.Println("4. Exit")
 
-		option := user_input.GetInput("Your choice: ")
+		option := GetInput("Your choice: ")
 
 		switch option {
 		case 1:
-			bank.Prompt()
+			Bank()
 		case 2:
-			profit_calculator.Prompt()
+			Profit()
 		case 3:
-			investment_calculator.Prompt()
+			Investment()
 		case 4:
 			fmt.Println("Goodbye! Please come again :)")
 			return

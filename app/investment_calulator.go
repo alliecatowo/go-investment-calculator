@@ -1,20 +1,18 @@
-package investment_calculator
+package main
 
 import (
 	"fmt"
 	"math"
-
-	"github.com/alliecatowo/go-investment-calculator/user_input"
 )
 
-func Prompt() {
+func Investment() {
 	// I was suggested to use 2.0% - as if!
 	const inflationRate = 2.0
 	var years, expectedReturnRate float64
 
-	investmentAmount := user_input.GetInput("Enter the amount you want to invest: ")
-	years = user_input.GetInput("Enter how many years you want to invest for: ")
-	expectedReturnRate = user_input.GetInput("Enter the expected return rate: ")
+	investmentAmount := GetInput("Enter the amount you want to invest: ")
+	years = GetInput("Enter how many years you want to invest for: ")
+	expectedReturnRate = GetInput("Enter the expected return rate: ")
 
 	futureValue, futureInflatedValue := future_investments(investmentAmount, years, expectedReturnRate, inflationRate)
 

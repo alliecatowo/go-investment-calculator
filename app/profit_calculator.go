@@ -1,10 +1,8 @@
-package profit_calculator
+package main
 
 import (
 	"fmt"
 	"os"
-
-	"github.com/alliecatowo/go-investment-calculator/user_input"
 )
 
 func writeProfit(profit float64) {
@@ -15,11 +13,11 @@ func writeProfit(profit float64) {
 	}
 }
 
-func Prompt() {
+func Profit() {
 	for {
-		revenue := user_input.GetInput("Enter Your Revenue:")
-		expenses := user_input.GetInput("Enter Your Expenses:")
-		tax_rate := user_input.GetInput("Enter Your Tax Rate:")
+		revenue := GetInput("Enter Your Revenue:")
+		expenses := GetInput("Enter Your Expenses:")
+		tax_rate := GetInput("Enter Your Tax Rate:")
 
 		ebt, profit, ratio := calculate_profits(revenue, expenses, tax_rate)
 
@@ -27,7 +25,7 @@ func Prompt() {
 		fmt.Printf("Your Earnings After Tax (Net Profit) is: $%.2f\n", profit)
 		fmt.Printf("Your Net Profit as a percentage of Revenue is: %.2f%%\n", ratio)
 
-		choice := user_input.GetInput("Do you want to calculate again? (1 for Yes, 0 for No):")
+		choice := GetInput("Do you want to calculate again? (1 for Yes, 0 for No):")
 
 		switch choice {
 		case 1:
