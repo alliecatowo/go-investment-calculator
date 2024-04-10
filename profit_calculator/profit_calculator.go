@@ -3,8 +3,7 @@ package profit_calculator
 import (
 	"fmt"
 	"os"
-	"strconv"
-	"errors"
+
 	"github.com/alliecatowo/go-investment-calculator/user_input"
 )
 
@@ -16,34 +15,30 @@ func writeProfit(profit float64) {
 	}
 }
 
-func getProfit() (float64, error) {
-	data, err := os.ReadFile("profit.txt")
-
-	if err != nil {
-		writeProfit(100.0)
-		return 100.0, errors.New("profit file not found. Default profit of $100.00 set")
-	}
-
-	profitText := string(data)
-	profit, err := strconv.ParseFloat(profitText, 64)
-
-	if err != nil {
-		writeProfit(100.0)
-		return 100.0, errors.New("failed to parse profit. Default profit of $100.00 set")
-	}
-	return profit, nil
-}
-
 func Prompt() {
-	revenue := user_input.GetInput("Enter Your Revenue:")
-	expenses := user_input.GetInput("Enter Your Expenses:")
-	tax_rate := user_input.GetInput("Enter Your Tax Rate:")
+	for {
+		revenue := user_input.GetInput("Enter Your Revenue:")
+		expenses := user_input.GetInput("Enter Your Expenses:")
+		tax_rate := user_input.GetInput("Enter Your Tax Rate:")
 
-	ebt, profit, ratio := calculate_profits(revenue, expenses, tax_rate)
+		ebt, profit, ratio := calculate_profits(revenue, expenses, tax_rate)
 
-	fmt.Printf("Your Earnings Before Tax (Gross Profit) is: $%.2f\n", ebt)
-	fmt.Printf("Your Earnings After Tax (Net Profit) is: $%.2f\n", profit)
-	fmt.Printf("Your Net Profit as a percentage of Revenue is: %.2f%%\n", ratio)
+		fmt.Printf("Your Earnings Before Tax (Gross Profit) is: $%.2f\n", ebt)
+		fmt.Printf("Your Earnings After Tax (Net Profit) is: $%.2f\n", profit)
+		fmt.Printf("Your Net Profit as a percentage of Revenue is: %.2f%%\n", ratio)
+
+		choice := user_input.GetInput("Do you want to calculate again? (1 for Yes, 0 for No):")
+
+		switch choice {
+		case 1:
+			continue
+		case 0:
+			return
+		default:
+			fmt.Println("Invalid option. Exiting to main menu. Please launch the Profit Calculator again.")
+			return
+		}
+	}
 
 }
 
@@ -51,6 +46,6 @@ func calculate_profits(revenue, expenses, tax_rate float64) (ebt, profit, ratio 
 	ebt = revenue - expenses
 	profit = ebt * (1 - tax_rate/100)
 	ratio = profit / revenue * 100
-
+	writeProfit(profit)
 	return ebt, profit, ratio
 }
