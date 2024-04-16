@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"github.com/Pallinder/go-randomdata"
 )
 
 const accountFileName = "balance.txt"
@@ -46,6 +47,7 @@ func Bank() {
 	}
 
 	fmt.Println("Welcome to the GO Bank!")
+	fmt.Println("You can reach support at", randomdata.PhoneNumber())
 
 loop: //label the loop to allow break to exit from switch statement
 	for {
